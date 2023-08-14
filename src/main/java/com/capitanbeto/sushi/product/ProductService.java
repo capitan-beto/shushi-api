@@ -16,15 +16,6 @@ public class ProductService {
     }
 
     public List<Product> getProducts() {
-        return List.of(
-                new Product(
-                        1,
-                        "Futurama",
-                        500,
-                        "Roll",
-                        "Roll de pollo",
-                        "imagen.com"
-                )
-        );
+        return this.productRepository.findAll();
     }
 }
