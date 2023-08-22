@@ -26,4 +26,9 @@ public class ProductController {
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         return this.productService.newProduct(product);
     }
+
+    @PutMapping
+    public ResponseEntity<Object> updateProduct(@RequestBody Product product) {
+        return this.productService.newProduct(product);
+    }
 }
