@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/v1/combos")
@@ -20,6 +21,11 @@ public class ProductController {
     @GetMapping
     public List<Product> getProducts() {
         return productService.getProducts();
+    }
+
+    @GetMapping(path = "{productId}")
+    public Optional<Product> getSingleProduct(@PathVariable("productId") Long id) {
+        return this.productService.getSingleProducts(id);
     }
 
     @PostMapping

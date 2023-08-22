@@ -24,6 +24,10 @@ public class ProductService {
         return this.productRepository.findAll();
     }
 
+    public Optional<Product> getSingleProducts(Long id) {
+        return this.productRepository.findById(id);
+    }
+
     public ResponseEntity<Object> newProduct(Product product) {
         data = new HashMap<>();
         Optional<Product> res = productRepository.findProductByName(product.getName());
