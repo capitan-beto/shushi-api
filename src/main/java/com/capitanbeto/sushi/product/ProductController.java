@@ -24,7 +24,7 @@ public class ProductController {
     }
 
     @GetMapping(path = "{productId}")
-    public Optional<Product> getSingleProduct(@PathVariable("productId") Long id) {
+    public ResponseEntity<Object> getSingleProduct(@PathVariable("productId") Long id) {
         return this.productService.getSingleProducts(id);
     }
 

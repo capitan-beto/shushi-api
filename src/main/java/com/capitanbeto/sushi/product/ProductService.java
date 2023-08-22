@@ -24,8 +24,23 @@ public class ProductService {
         return this.productRepository.findAll();
     }
 
-    public Optional<Product> getSingleProducts(Long id) {
-        return this.productRepository.findById(id);
+    public ResponseEntity<Object> getSingleProducts(Long id) {
+        data = new HashMap<>();
+        Optional<Product> res = this.productRepository.findById(id);
+        if (res.isEmpty()) {
+            data.put("error", true);
+            data.put("message", "Product ID not found");
+            return new ResponseEntity<>(
+                    data,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+
+        data.put("message", res);
+        return new ResponseEntity<>(
+                data,
+                HttpStatus.OK
+        );
     }
 
     public ResponseEntity<Object> newProduct(Product product) {
