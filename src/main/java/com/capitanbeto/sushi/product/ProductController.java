@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/v1/combos")
@@ -19,8 +18,11 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getProducts() {
-        return productService.getProducts();
+    public List<Product> getProducts(@RequestParam(required = false) Integer limit) {
+        if (limit == null) {
+            return productService.getProducts();
+        }
+        return productService.getProducts().subList(0, limit);
     }
 
     @GetMapping(path = "{productId}")
