@@ -91,7 +91,7 @@ public class ProductService {
         );
     }
 
-    public List<String> getCategories() {
+    public List<String> categoriesList() {
         List<Product> combos = this.getProducts();
         List<String> categories = new ArrayList<>();
         for (int i = 0; i < combos.size(); i++) {

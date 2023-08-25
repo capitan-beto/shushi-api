@@ -32,7 +32,7 @@ public class ProductController {
 
     @GetMapping(path = "/categories")
     public List<String> getCategories() {
-        return this.productService.getCategories();
+        return this.productService.categoriesList();
     }
 
     @PostMapping
