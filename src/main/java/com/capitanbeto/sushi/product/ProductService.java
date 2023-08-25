@@ -101,4 +101,16 @@ public class ProductService {
         }
         return categories;
     }
+
+    public List<Product> listByCategory(String cat) {
+        List<Product> combos = this.getProducts();
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i < combos.size(); i++) {
+            if ( combos.get(i).getCategory().equalsIgnoreCase(cat) ) {
+                products.add(combos.get(i));
+            }
+        }
+
+        return  products;
+    }
 }

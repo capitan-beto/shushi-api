@@ -35,6 +35,11 @@ public class ProductController {
         return this.productService.categoriesList();
     }
 
+    @GetMapping(path = "/categories/{category}")
+    public List<Product> getByCategory(@PathVariable("category") String cat) {
+        return this.productService.listByCategory(cat);
+    }
+
     @PostMapping
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         return this.productService.newProduct(product);
