@@ -9,7 +9,7 @@ INSERT INTO product (price, category, description, image, name) VALUES (4000, "V
 INSERT INTO product (price, category, description, image, name) VALUES (3800, "Single", "The Single Combo includes 10 pieces of the chef's choice, 1 Gyoza and a soda", "www.imagen.com/cookedx15", "Single Combo");
 INSERT INTO product (price, category, description, image, name) VALUES (7600, "Tasting", "30 pieces of Sake, Feel Roll, Tropical Roll, Spicy, Poshi, Hot Roll, Mango Roll, Pepper Roll", "www.imagen.com/cookedx15", "Tasting Combo X30");
 INSERT INTO product (price, category, description, image, name) VALUES (9500, "Tasting", "45 pieces of Sake, Feel Roll, Tropical Roll, Spicy, Poshi, Hot Roll, Mango Roll, Pepper Roll", "www.imagen.com/cookedx15", "Tasting Combo X45");
-INSERT INTO product (price, category, description, image, name) VALUES (7900, "RNR", "30 pieces of Koi, Rock and Roll, Tobiko, Avocado, Hot Roll, Soul, Pepper Roll", "www.imagen.com/cookedx15", "Rock and Roll X30");
-INSERT INTO product (price, category, description, image, name) VALUES (10200, "RNR", "45 pieces of Koi, Rock and Roll, Tobiko, Avocado, California Tori, Soul, Ebi Cream, Veggie Crunch, Koi", "www.imagen.com/cookedx15", "Rock and Roll X45");
+INSERT INTO product (price, category, description, image, name) VALUES (7900, "Rock and Roll", "30 pieces of Koi, Rock and Roll, Tobiko, Avocado, Hot Roll, Soul, Pepper Roll", "www.imagen.com/cookedx15", "Rock and Roll X30");
+INSERT INTO product (price, category, description, image, name) VALUES (10200, "Rock and Roll", "45 pieces of Koi, Rock and Roll, Tobiko, Avocado, California Tori, Soul, Ebi Cream, Veggie Crunch, Koi", "www.imagen.com/cookedx15", "Rock and Roll X45");
 INSERT INTO product (price, category, description, image, name) VALUES (10200, "Premium", "45 pieces of Tobiko, Avocado, Soul, SPF, Maki Crazy", "www.imagen.com/cookedx15", "Premium X45");
 
