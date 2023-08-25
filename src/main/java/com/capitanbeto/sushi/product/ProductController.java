@@ -30,6 +30,11 @@ public class ProductController {
         return this.productService.getSingleProducts(id);
     }
 
+    @GetMapping(path = "/categories")
+    public List<String> getCategories() {
+        return this.productService.getCategories();
+    }
+
     @PostMapping
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         return this.productService.newProduct(product);

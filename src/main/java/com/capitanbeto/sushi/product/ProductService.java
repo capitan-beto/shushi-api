@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -88,5 +89,16 @@ public class ProductService {
                 data,
                 HttpStatus.ACCEPTED
         );
+    }
+
+    public List<String> getCategories() {
+        List<Product> combos = this.getProducts();
+        List<String> categories = new ArrayList<>();
+        for (int i = 0; i < combos.size(); i++) {
+            if ( !categories.contains(combos.get(i).getCategory()) ) {
+                categories.add( combos.get(i).getCategory() );
+            }
+        }
+        return categories;
     }
 }
