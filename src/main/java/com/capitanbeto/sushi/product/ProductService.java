@@ -106,7 +106,7 @@ public class ProductService {
         List<Product> combos = this.getProducts();
         List<Product> products = new ArrayList<>();
         for (int i = 0; i < combos.size(); i++) {
-            if ( combos.get(i).getCategory().equalsIgnoreCase(cat) ) {
+            if ( combos.get(i).getCategory().contains(cat.toLowerCase()) ) {
                 products.add(combos.get(i));
             }
         }
