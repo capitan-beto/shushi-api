@@ -36,8 +36,11 @@ public class ProductController {
     }
 
     @GetMapping(path = "/categories/{category}")
-    public List<Product> getByCategory(@PathVariable("category") String cat) {
-        return this.productService.listByCategory(cat);
+    public List<Product> getByCategory(@PathVariable("category") String cat, @RequestParam(required = false) Integer limit) {
+        if (limit == null) {
+            return this.productService.listByCategory(cat);
+        }
+        return this.productService.listByCategory(cat).subList(0, limit);
     }
 
     @PostMapping
