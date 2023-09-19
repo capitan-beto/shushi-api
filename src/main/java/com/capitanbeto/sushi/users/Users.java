@@ -18,6 +18,8 @@ public class Users {
 
     private String phone;
 
+    public Users(){}
+
     public Users(Long id, String email, String username, String password, String phone) {
         this.id = id;
         this.email = email;
@@ -25,8 +27,6 @@ public class Users {
         this.password = password;
         this.phone = phone;
     }
-
-    public Users(){}
 
     public Users(String email, String username, String password, String phone) {
         this.email = email;
