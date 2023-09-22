@@ -3,9 +3,10 @@ package com.capitanbeto.sushi.users;
 import jakarta.persistence.*;
 
 @Entity
-@Table
-public class Users {
+@Table(name = "users")
+public class User {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -18,9 +19,21 @@ public class Users {
 
     private String phone;
 
-    public Users(){}
+    public Address getAddress() {
+        return address;
+    }
 
-    public Users(Long id, String email, String username, String password, String phone) {
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    public User(){}
+
+    public User(Long id, String email, String username, String password, String phone) {
         this.id = id;
         this.email = email;
         this.username = username;
@@ -28,7 +41,7 @@ public class Users {
         this.phone = phone;
     }
 
-    public Users(String email, String username, String password, String phone) {
+    public User(String email, String username, String password, String phone) {
         this.email = email;
         this.username = username;
         this.password = password;
