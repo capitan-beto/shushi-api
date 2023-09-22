@@ -44,6 +44,7 @@ INSERT INTO product (price, category, description, image, name) VALUES (1100, "r
 INSERT INTO product (price, category, description, image, name) VALUES (1100, "rolls", "rice, grilled shrimps, seaweed, avocado, red tuna, spicy mayo and tare sauce", "www.imagen.com/cookedx15", "Rainbow Roll X4");
 INSERT INTO product (price, category, description, image, name) VALUES (1100, "rolls", "seaweed, rice, grilled pepper, swiss cheese, panko and tempura (fried roll)", "www.imagen.com/cookedx15", "Veggie Crunch X4");
 
-INSERT INTO users (email, password, phone, username) VALUES ("carlete@email.com", "carlete", "3576-474409", "carleteSiu");
+INSERT INTO addresses (number, city, street, zipcode) VALUES (2345, "San Francisco", "Blv. Perón", "12345-12345");
+INSERT INTO users (address_id, email, password, phone, username) VALUES (1 ,"carlitos@email.com", "abcedt", "3576-474409", "carlitos1998");
 
 
