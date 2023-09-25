@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest({AuthController.class})
@@ -23,6 +25,14 @@ class AuthControllerTest {
     void RootWhenAuthenticatedThen401() throws Exception {
         this.mvc.perform(get("/token"))
                 .andExpect(status().isUnauthorized());
+
+    }
+
+    @Test
+    void rootWhenAuthenticatedThen200() throws Exception {
+        this.mvc.perform(post("/token")
+                .with(httpBasic("carle", "carle")))
+                .andExpect(status().isOk());
 
     }
 
