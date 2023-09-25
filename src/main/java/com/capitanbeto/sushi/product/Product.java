@@ -3,7 +3,7 @@ package com.capitanbeto.sushi.product;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
