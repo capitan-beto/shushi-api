@@ -2,10 +2,12 @@ package com.capitanbeto.sushi.product;
 
 import com.capitanbeto.sushi.config.SecurityConfig;
 import com.capitanbeto.sushi.service.TokenService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,16 +25,16 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Objects;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -52,7 +54,7 @@ class ProductControllerTest {
 
     @BeforeEach
     public void setup() {
-        products = new Product(1L,
+        products = new Product(
                 "Full Salmon X45",
                 13,
                 "combos",
@@ -70,10 +72,20 @@ class ProductControllerTest {
     }
 
     @Test
-    void getSingleProduct() throws Exception {
-        when(service.getSingleProducts(1L)).thenReturn(new ResponseEntity<Object>(products, HttpStatus.OK) );
+    void testGetSingleProduct() throws Exception {
+        when(service.getSingleProducts(1L)).thenReturn(new ResponseEntity<Object>(products, HttpStatus.OK));
         MvcResult result = mvc.perform(get("/api/v1/products/1"))
                 .andExpect(status().isOk()).andReturn();
         assertThat("Full Salmon X45", result.getResponse().getContentAsString().contains("Full Salmon X45"));
+    }
+
+    @Test
+    void testPostProduct() throws Exception {
+        when(service.newProduct(products)).thenReturn(new ResponseEntity<Object>(products, HttpStatus.CONFLICT));
+        mvc.perform(post("/api/v1/products")
+                .content(new ObjectMapper().writeValueAsString(products))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
     }
 }
