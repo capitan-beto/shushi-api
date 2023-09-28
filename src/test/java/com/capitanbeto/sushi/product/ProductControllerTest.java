@@ -3,38 +3,26 @@ package com.capitanbeto.sushi.product;
 import com.capitanbeto.sushi.config.SecurityConfig;
 import com.capitanbeto.sushi.service.TokenService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -73,7 +61,7 @@ class ProductControllerTest {
 
     @Test
     void testGetSingleProduct() throws Exception {
-        when(service.getSingleProducts(1L)).thenReturn(new ResponseEntity<Object>(products, HttpStatus.OK));
+        when(service.getSingleProducts(1L)).thenReturn(new ResponseEntity<>(products, HttpStatus.OK));
         MvcResult result = mvc.perform(get("/api/v1/products/1"))
                 .andExpect(status().isOk()).andReturn();
         assertThat("Full Salmon X45", result.getResponse().getContentAsString().contains("Full Salmon X45"));
@@ -81,7 +69,7 @@ class ProductControllerTest {
 
     @Test
     void testPostProduct() throws Exception {
-        when(service.newProduct(products)).thenReturn(new ResponseEntity<Object>(products, HttpStatus.CONFLICT));
+        when(service.newProduct(products)).thenReturn(new ResponseEntity<>(products, HttpStatus.CONFLICT));
         mvc.perform(post("/api/v1/products")
                 .content(new ObjectMapper().writeValueAsString(products))
                 .contentType(MediaType.APPLICATION_JSON))
