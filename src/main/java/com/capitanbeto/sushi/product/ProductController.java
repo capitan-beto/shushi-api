@@ -17,7 +17,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping({"/", ""})
     public List<Product> getProducts(@RequestParam(required = false) Integer limit) {
         if (limit == null) {
             return productService.getProducts();
