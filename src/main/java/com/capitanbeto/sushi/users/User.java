@@ -31,6 +31,18 @@ public class User {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "name_id")
+    private Name name;
+
     public User(){}
 
     public User(Long id, String email, String username, String password, String phone) {
