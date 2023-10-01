@@ -25,17 +25,17 @@ public class ProductController {
         return productService.getProducts().subList(0, limit);
     }
 
-    @GetMapping(path = "{productId}")
+    @GetMapping({"{productId}", "{productId}/"})
     public ResponseEntity<Object> getSingleProduct(@PathVariable("productId") Long id) {
         return this.productService.getSingleProducts(id);
     }
 
-    @GetMapping(path = "/categories")
+    @GetMapping({"/categories", "categories/"})
     public List<String> getCategories() {
         return this.productService.categoriesList();
     }
 
-    @GetMapping(path = "/categories/{category}")
+    @GetMapping({"/categories/{category}", "/categories/{category}/"})
     public List<Product> getByCategory(@PathVariable("category") String cat, @RequestParam(required = false) Integer limit) {
         if (limit == null) {
             return this.productService.listByCategory(cat);
@@ -43,17 +43,17 @@ public class ProductController {
         return this.productService.listByCategory(cat).subList(0, limit);
     }
 
-    @PostMapping
+    @PostMapping({"", "/"})
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         return this.productService.newProduct(product);
     }
 
-    @PutMapping
+    @PutMapping({"/", ""})
     public ResponseEntity<Object> updateProduct(@RequestBody Product product) {
         return this.productService.newProduct(product);
     }
 
-    @DeleteMapping(path = "{productId}")
+    @DeleteMapping({"{productId}", "{productId}/"})
     public ResponseEntity<Object> delete(@PathVariable("productId") Long id) {
         return this.productService.deleteProduct(id);
     }
