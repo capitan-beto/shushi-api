@@ -146,3 +146,12 @@ PUT:
 DELETE: 
 
 - /products/1
+
+
+
+# To-do
+
+- Support slashes in every controller.
+- Create Cart service. 
+- Add token jwt auth based in users.
+
