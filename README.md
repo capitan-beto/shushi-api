@@ -36,7 +36,7 @@ api/v1/products/1
 
 ### Add new product
 
-```
+```js
 fetch("http://localhost:8080/api/v1/products", {
   method: "POST",
   body: JSON.stringify({
@@ -50,7 +50,7 @@ fetch("http://localhost:8080/api/v1/products", {
   .then((res) => res.json())
   .then((json) => console.log(json));
 
-/* Will return
+/* Return
 
 {
     "data": {
@@ -63,5 +63,35 @@ fetch("http://localhost:8080/api/v1/products", {
     },
     "message": "Product successfully saved"
 }
+*/
+```
+
+### Updating a product 
+
+```js
+fetch("http://localhost:8080/api/v1/products", {
+  method: "PUT",
+  body: JSON.stringify({
+    id: 1,
+    name: "Full Salmon x15 Updated",
+    price: 4000,
+    category: "combos/ salmon",
+    description: "15 pieces of Sake, Cream Roll, Salmon Maki, Feel Roll",
+    image: "www.imagen.com/salmonx15"
+  })
+})
+  .then((res) => res.json())
+  .then((json) => console.log(json));
+
+/* return 
+    "data": {
+        "id": 1,
+        "name": "Full Salmon X15 Edited",
+        "price": 4000.0,
+        "category": "combos / salmon",
+        "description": "15 pieces of Sake, Cream Roll, Salmon Maki, Feel Roll",
+        "image": "www.imagen.com/salmonx15"
+    },
+    "message": "Product successfully updated"
 */
 ```
