@@ -7,7 +7,6 @@ This project is a REST API inspired by [FakeStore API](https://github.com/keikaa
 The idea came with the need of learn how Spring Boot works so i decided to create a simple monolithic application that offers a similar service as FakeStore API but oriented in the food bussiness.
 
 # Resources 
----
 
 - Products
 - Users
@@ -15,7 +14,7 @@ The idea came with the need of learn how Spring Boot works so i decided to creat
 - Carts 
 
 # Accessing to resources 
----
+
 Note: These paths are temporary while the system is under development. 
 
 ## Products 
@@ -37,7 +36,7 @@ api/v1/products/1
 ### Add new product
 
 ```js
-fetch("http://localhost:8080/api/v1/products", {
+fetch("/api/v1/products", {
   method: "POST",
   body: JSON.stringify({
     name: "test combo",
@@ -50,8 +49,7 @@ fetch("http://localhost:8080/api/v1/products", {
   .then((res) => res.json())
   .then((json) => console.log(json));
 
-/* Return
-
+/* returns
 {
     "data": {
         "id": 45,
@@ -69,7 +67,7 @@ fetch("http://localhost:8080/api/v1/products", {
 ### Updating a product 
 
 ```js
-fetch("http://localhost:8080/api/v1/products", {
+fetch("/api/v1/products", {
   method: "PUT",
   body: JSON.stringify({
     id: 1,
@@ -83,7 +81,7 @@ fetch("http://localhost:8080/api/v1/products", {
   .then((res) => res.json())
   .then((json) => console.log(json));
 
-/* return 
+/* returns
     "data": {
         "id": 1,
         "name": "Full Salmon X15 Edited",
@@ -95,3 +93,56 @@ fetch("http://localhost:8080/api/v1/products", {
     "message": "Product successfully updated"
 */
 ```
+
+### Delete product
+
+```js
+[DELETE] /api/v1/products/1 
+
+/* returns
+{
+    "message": "Product successfully deleted"
+}
+```
+
+### Limit results 
+
+Results can be limited using query strings
+
+```js
+/api/v1/products?limit=5
+```
+
+## Types and available routes 
+
+### Products 
+
+```js
+{
+    id: Number,
+    name: String,
+    price: Number,
+    category: Number,
+    description: String,
+    image: String
+}
+```
+GET: 
+
+- /api/v1/products (Get all products)
+- /api/v1/products/1 (Get single product)
+- /api/v1/products?limit=10 (Limit products response)
+- /api/v1/products/categories (Get categories list)
+- /api/v1/products/categories/veggie (Get products in specific category)
+
+POST: 
+
+- /products 
+
+PUT: 
+
+- /products
+
+DELETE: 
+
+- /products/1
