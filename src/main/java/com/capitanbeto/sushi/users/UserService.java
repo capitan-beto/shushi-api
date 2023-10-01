@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -26,19 +27,27 @@ public class UserService {
     public ResponseEntity<Object> newUser(User user) {
         HashMap<String, Object> data = new HashMap<>();
         Optional<User> res = userRepository.findUserByUsername(user.getUsername());
+        Optional<User> email = userRepository.findUserByEmail(user.getEmail());
 
-        if (res.isPresent() && user.getId() == null) {
+        if (res.isPresent()) {
             data.put("error", true);
-            data.put("message", "There's already a product with that name");
+            data.put("message", "Username is already in use");
+            return new ResponseEntity<>(
+                    data,
+                    HttpStatus.CONFLICT
+            );
+        } else if (email.isPresent()) {
+            data.put("error", true);
+            data.put("message", "Email is already registered");
             return new ResponseEntity<>(
                     data,
                     HttpStatus.CONFLICT
             );
         }
 
-        data.put("message", "Product successfully saved");
+        data.put("message", "User successfully saved");
         if (user.getId() != null) {
-            data.put("message", "Product successfully updated");
+            data.put("message", "User successfully updated");
         }
 
         userRepository.save(user);

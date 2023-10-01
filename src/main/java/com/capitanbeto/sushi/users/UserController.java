@@ -15,12 +15,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping({"", "/"})
     public List<User> getUsers() {
         return userService.getUsers();
     }
 
-    @PostMapping
+    @PostMapping({"", "/"})
     public ResponseEntity<Object> addUser(@RequestBody User user) {
         return this.userService.newUser(user);
     }
