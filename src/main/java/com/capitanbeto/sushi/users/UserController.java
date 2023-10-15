@@ -16,8 +16,11 @@ public class UserController {
     }
 
     @GetMapping({"", "/"})
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public List<User> getUsers(@RequestParam(required = false) Integer limit) {
+        if (limit == null) {
+            return userService.getUsers();
+        }
+        return userService.getUsers().subList(0, limit);
     }
 
     @PostMapping({"", "/"})
