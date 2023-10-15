@@ -23,11 +23,11 @@ public class UserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
         User userEntity = res.stream().findFirst().orElse(null);
-        UserDetails usuario = org.springframework.security.core.userdetails.User
+        UserDetails user = org.springframework.security.core.userdetails.User
                 .withUsername(userEntity.getUsername())
                 .password("{noop}" + userEntity.getPassword())
                 .authorities("USER")
                 .build();
-        return usuario;
+        return user;
     }
 }
