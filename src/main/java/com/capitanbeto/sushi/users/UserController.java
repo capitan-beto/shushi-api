@@ -32,4 +32,14 @@ public class UserController {
     public ResponseEntity<Object> addUser(@RequestBody User user) {
         return this.userService.newUser(user);
     }
+
+    @PutMapping({"/", ""})
+    public ResponseEntity<Object> updateProduct(@RequestBody User user) {
+        return this.userService.newUser(user);
+    }
+
+    @DeleteMapping({"{productId}", "{productId}/"})
+    public  ResponseEntity<Object> delete(@PathVariable("productId") Long id) {
+        return this.userService.deleteUser(id);
+    }
 }

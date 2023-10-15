@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -76,6 +75,27 @@ public class UserService {
         return new ResponseEntity<>(
                 data,
                 HttpStatus.CREATED
+        );
+    }
+
+    public ResponseEntity<Object> deleteUser(Long id) {
+        data = new HashMap<>();
+        boolean exists = this.userRepository.existsById(id);
+
+        if (!exists) {
+            data.put("error", true);
+            data.put("message", "There's no product with that ID");
+            return new ResponseEntity<>(
+                    data,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+
+        userRepository.deleteById(id);
+        data.put("message", "Product successfully deleted");
+        return new ResponseEntity<>(
+                data,
+                HttpStatus.ACCEPTED
         );
     }
 }
