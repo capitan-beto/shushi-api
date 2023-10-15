@@ -23,6 +23,11 @@ public class UserController {
         return userService.getUsers().subList(0, limit);
     }
 
+    @GetMapping({"{productId}", "{productId}/"})
+    public ResponseEntity<Object> getSingleProduct(@PathVariable("productId") Long id) {
+        return this.userService.getSingleUser(id);
+    }
+
     @PostMapping({"", "/"})
     public ResponseEntity<Object> addUser(@RequestBody User user) {
         return this.userService.newUser(user);

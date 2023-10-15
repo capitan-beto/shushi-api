@@ -13,6 +13,8 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    HashMap<String, Object> data;
+
     private final UserRepository userRepository;
 
     @Autowired
@@ -22,6 +24,25 @@ public class UserService {
 
     public List<User> getUsers() {
         return this.userRepository.findAll();
+    }
+
+    public ResponseEntity<Object> getSingleUser(Long id) {
+        data = new HashMap<>();
+        Optional<User> res = this.userRepository.findById(id);
+        if (res.isEmpty()) {
+            data.put("error", true);
+            data.put("message", "Product ID not found");
+            return new ResponseEntity<>(
+                    data,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+
+        data.put("message", res);
+        return new ResponseEntity<>(
+                data,
+                HttpStatus.OK
+        );
     }
 
     public ResponseEntity<Object> newUser(User user) {
