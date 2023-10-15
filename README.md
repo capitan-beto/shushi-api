@@ -103,6 +103,7 @@ fetch("/api/v1/products", {
 {
     "message": "Product successfully deleted"
 }
+*/
 ```
 
 ### Limit results 
@@ -147,11 +148,42 @@ DELETE:
 
 - /products/1
 
+### Users 
+
+```js
+{
+    id: Number,
+    email: String,
+    password: String,
+    name: {
+      firstname: String,
+      lastname: String,
+    },
+    phone: String,
+    address: {
+      city: String,
+      street: String,
+      zipcode: String,
+      number: Number
+    }		
+}
+```
+GET:
+- /api/v1/users (Get all users)
+- /api/v1/users/1 (Get single user)
+- /api/v1/users?limit=3 (Limit users response)
+
+POST:
+- /api/v1/users (Add new user)
+
+PUT:
+- /api/v1/users (Edit user)
+
+DELETE:
+- 
+ 
 
 
 # To-do
 
-- Support slashes in every controller.
 - Create Cart service. 
-- Add token jwt auth based in users.
-
