@@ -84,7 +84,7 @@ public class UserService {
 
         if (!exists) {
             data.put("error", true);
-            data.put("message", "There's no product with that ID");
+            data.put("message", "There's no user with that ID");
             return new ResponseEntity<>(
                     data,
                     HttpStatus.NOT_FOUND
@@ -92,7 +92,7 @@ public class UserService {
         }
 
         userRepository.deleteById(id);
-        data.put("message", "Product successfully deleted");
+        data.put("message", "User deleted successfully");
         return new ResponseEntity<>(
                 data,
                 HttpStatus.ACCEPTED
