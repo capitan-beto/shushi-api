@@ -7,25 +7,34 @@ import jakarta.persistence.*;
 public class CartProduct {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    private Long id;
+
+    private int productId;
 
     private int quantity;
 
     public CartProduct() {
     }
 
-    public CartProduct(Long productId, int quantity) {
+    public CartProduct(Long id, int productId, int quantity) {
+        this.id = id;
         this.productId = productId;
         this.quantity = quantity;
     }
 
-    public Long getProductId() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 

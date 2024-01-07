@@ -17,19 +17,19 @@ public class Cart {
     private Date date;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "products")
-    private CartProduct[] products;
+    @JoinColumn(name = "products_id")
+    private CartProduct products;
 
     public Cart() {
     }
 
-    public Cart(int userId, Date date, CartProduct[] products) {
+    public Cart(int userId, Date date, CartProduct products) {
         this.userId = userId;
         this.date = date;
         this.products = products;
     }
 
-    public Cart(Long id, int userId, Date date, CartProduct[] products) {
+    public Cart(Long id, int userId, Date date, CartProduct products) {
         this.id = id;
         this.userId = userId;
         this.date = date;
@@ -60,11 +60,11 @@ public class Cart {
         this.date = date;
     }
 
-    public CartProduct[] getProducts() {
+    public CartProduct getProducts() {
         return products;
     }
 
-    public void setProducts(CartProduct[] products) {
+    public void setProducts(CartProduct products) {
         this.products = products;
     }
 }
