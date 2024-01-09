@@ -48,6 +48,9 @@ INSERT INTO names (firstname, lastname) VALUES ("Carlos", "Nana");
 INSERT INTO addresses (number, city, street, zipcode) VALUES (2345, "San Francisco", "Blv. Perón", "12345-12345");
 INSERT INTO users (address_id, name_id, email, password, phone, username) VALUES (1 , 1, "carlitos@email.com", "abcedt", "3576-474409", "carlitos1998");
 
-INSERT INTO cart_products (id, product_id, quantity) VALUES (1, 1, 5);
+INSERT INTO carts (user_id, date) VALUES (1, "1998-10-12 05:25:23");
+INSERT INTO cart_products (cart_id, product_id, quantity) VALUES (1, 1, 5);
+INSERT INTO cart_products (cart_id, product_id, quantity) VALUES (1, 3, 8);
+INSERT INTO carts (user_id, date) VALUES (2, "1998-10-12 05:25:23");
+INSERT INTO cart_products (cart_id, product_id, quantity) VALUES (2, 4, 1);
 
-INSERT INTO carts (user_id, date, products_id) VALUES (1, "1998-10-12 05:25:23",  1)
