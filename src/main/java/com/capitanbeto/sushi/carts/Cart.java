@@ -3,6 +3,7 @@ package com.capitanbeto.sushi.carts;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "carts")
@@ -16,20 +17,19 @@ public class Cart {
 
     private Date date;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "products_id")
-    private CartProduct products;
+    @OneToMany(mappedBy = "cart")
+    private Set<CartProduct> products;
 
     public Cart() {
     }
 
-    public Cart(int userId, Date date, CartProduct products) {
+    public Cart(int userId, Date date, Set<CartProduct> products) {
         this.userId = userId;
         this.date = date;
         this.products = products;
     }
 
-    public Cart(Long id, int userId, Date date, CartProduct products) {
+    public Cart(Long id, int userId, Date date, Set<CartProduct> products) {
         this.id = id;
         this.userId = userId;
         this.date = date;
@@ -60,11 +60,11 @@ public class Cart {
         this.date = date;
     }
 
-    public CartProduct getProducts() {
+    public Set<CartProduct> getProducts() {
         return products;
     }
 
-    public void setProducts(CartProduct products) {
+    public void setProducts(Set<CartProduct> products) {
         this.products = products;
     }
 }
