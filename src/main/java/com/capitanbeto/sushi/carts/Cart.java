@@ -1,5 +1,7 @@
 package com.capitanbeto.sushi.carts;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -15,6 +17,7 @@ public class Cart {
 
     private int userId;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
     @OneToMany(mappedBy = "cart")
