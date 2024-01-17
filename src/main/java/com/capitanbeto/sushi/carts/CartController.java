@@ -3,10 +3,7 @@ package com.capitanbeto.sushi.carts;
 import com.capitanbeto.sushi.product.ProductController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,14 +19,16 @@ public class CartController {
     }
 
     @GetMapping({"", "/"})
-    public List<Cart> getCarts() {
-        return this.cartService.getCarts();
+    public List<Cart> getCarts(@RequestParam(required = false) Integer limit) {
+        if (limit == null) {
+            return cartService.getCarts();
+        }
+        return cartService.getCarts().subList(0, limit);
     }
 
     @GetMapping({"{cartId}", "{cartId}/"})
     public ResponseEntity<Object> getSingleCart(@PathVariable("cartId") Long id) {
         return this.cartService.getSingleCart(id);
     }
-
 
 }
