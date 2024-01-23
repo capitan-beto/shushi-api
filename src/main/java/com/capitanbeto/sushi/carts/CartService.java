@@ -45,4 +45,24 @@ public class CartService {
                 HttpStatus.OK
         );
     }
+
+    public ResponseEntity<Object> getUserCart(Long id) {
+        data = new HashMap<>();
+        Optional<Cart> res = this.cartRepository.findCartByUserId(id);
+
+        if (res.isEmpty()) {
+            data.put("error", true);
+            data.put("message", "User ID not found");
+            return new ResponseEntity<> (
+                    data,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+
+        data.put("message", res);
+        return new ResponseEntity<>(
+                data,
+                HttpStatus.OK
+        );
+    }
 }

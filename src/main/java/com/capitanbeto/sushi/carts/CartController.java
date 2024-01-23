@@ -31,4 +31,9 @@ public class CartController {
         return this.cartService.getSingleCart(id);
     }
 
+    @GetMapping({"/user/{userId}", "/user/{userId}/"})
+    public ResponseEntity<Object> getUserCart(@PathVariable("userId") Long id) {
+        return this.cartService.getUserCart(id);
+    }
+
 }
