@@ -51,6 +51,6 @@ INSERT INTO users (address_id, name_id, email, password, phone, username) VALUES
 INSERT INTO carts (user_id, date) VALUES (1, "1998-10-12 05:25:23");
 INSERT INTO cart_products (cart_id, product_id, quantity) VALUES (1, 1, 5);
 INSERT INTO cart_products (cart_id, product_id, quantity) VALUES (1, 3, 8);
-INSERT INTO carts (user_id, date) VALUES (2, "1998-10-12 05:25:23");
+INSERT INTO carts (user_id, date) VALUES (3, "1998-10-12 05:25:23");
 INSERT INTO cart_products (cart_id, product_id, quantity) VALUES (2, 4, 1);
 
