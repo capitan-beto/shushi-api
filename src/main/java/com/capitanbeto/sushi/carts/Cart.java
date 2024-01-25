@@ -10,10 +10,9 @@ import java.util.Set;
 @Entity
 @Table(name = "carts")
 public class Cart {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long cartId;
 
     private int userId;
 
@@ -32,19 +31,19 @@ public class Cart {
         this.products = products;
     }
 
-    public Cart(Long id, int userId, Date date, Set<CartProduct> products) {
-        this.id = id;
+    public Cart(Long cartId, int userId, Date date, Set<CartProduct> products) {
+        this.cartId = cartId;
         this.userId = userId;
         this.date = date;
         this.products = products;
     }
 
-    public Long getId() {
-        return id;
+    public Long getCartId() {
+        return cartId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCartId(Long cartId) {
+        this.cartId = cartId;
     }
 
     public int getUserId() {
