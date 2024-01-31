@@ -34,4 +34,9 @@ public class CartController {
     public ResponseEntity<Object> getUserCart(@PathVariable("userId") Long id) {
         return this.cartService.getUserCart(id);
     }
+
+    @PostMapping({"", "/"})
+    public  ResponseEntity<Object> addCart(@RequestBody Cart cart) {
+        return this.cartService.newCart(cart);
+    }
 }
