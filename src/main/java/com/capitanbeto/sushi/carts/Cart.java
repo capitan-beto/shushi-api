@@ -14,24 +14,24 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartId;
 
-    private int userId;
+    private Long userId;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private Set<CartProduct> products;
 
     public Cart() {
     }
 
-    public Cart(int userId, Date date, Set<CartProduct> products) {
+    public Cart(Long userId, Date date, Set<CartProduct> products) {
         this.userId = userId;
         this.date = date;
         this.products = products;
     }
 
-    public Cart(Long cartId, int userId, Date date, Set<CartProduct> products) {
+    public Cart(Long cartId, Long userId, Date date, Set<CartProduct> products) {
         this.cartId = cartId;
         this.userId = userId;
         this.date = date;
@@ -46,11 +46,11 @@ public class Cart {
         this.cartId = cartId;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
