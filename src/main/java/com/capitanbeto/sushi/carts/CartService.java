@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CartService {
@@ -16,9 +17,12 @@ public class CartService {
 
     private final CartRepository cartRepository;
 
+    private final CartProductRepository cartProductRepository;
+
     @Autowired
-    public CartService(CartRepository cartRepository) {
+    public CartService(CartRepository cartRepository, CartProductRepository cartProductRepository) {
         this.cartRepository = cartRepository;
+        this.cartProductRepository = cartProductRepository;
     }
 
     public List<Cart> getCarts() {
@@ -61,6 +65,37 @@ public class CartService {
         return new ResponseEntity<>(
                 data,
                 HttpStatus.OK
+        );
+    }
+
+    public ResponseEntity<Object> newCart(Cart cart) {
+        data = new HashMap<>();
+        Optional<Cart> res = cartRepository.findCartByUserId(cart.getUserId());
+
+        if (res.isPresent() && cart.getCartId() == null) {
+            data.put("error", true);
+            data.put("message", "There's already a cart with that ID");
+            return new ResponseEntity<>(
+                    data,
+                    HttpStatus.CONFLICT
+            );
+        }
+
+        data.put("message", "Cart successfully saved");
+        if (cart.getCartId() != null) {
+            data.put("message", "Cart successfully updated");
+        }
+
+        Set<CartProduct> products = cart.getProducts();
+        cartRepository.save(cart);
+        for (CartProduct product : products) {
+            product.setCart(cart);
+            cartProductRepository.save(product);
+        }
+        data.put("data", cart);
+        return new ResponseEntity<>(
+                data,
+                HttpStatus.CREATED
         );
     }
 }
