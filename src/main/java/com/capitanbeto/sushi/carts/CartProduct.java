@@ -19,7 +19,7 @@ public class CartProduct {
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name="cart_id", nullable = false)
+    @JoinColumn(name="cart_id")
     @JsonIgnore
     private Cart cart;
 
@@ -28,6 +28,11 @@ public class CartProduct {
 
     public CartProduct(Long id, int productId, int quantity, Cart cart) {
         this.id = id;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.cart = cart;
+    }
+    public CartProduct(int productId, int quantity, Cart cart) {
         this.productId = productId;
         this.quantity = quantity;
         this.cart = cart;
