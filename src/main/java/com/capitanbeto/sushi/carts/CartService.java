@@ -69,9 +69,9 @@ public class CartService {
         data = new HashMap<>();
         Optional<Cart> res = cartRepository.findCartByUserId(cart.getUserId());
 
-        if (res.isPresent() && cart.getCartId() == null) {
+        if (res.isPresent()) {
             data.put("error", true);
-            data.put("message", "There's already a cart with that ID");
+            data.put("message", "that user or cart id is already in use");
             return new ResponseEntity<>(
                     data,
                     HttpStatus.CONFLICT
@@ -79,7 +79,8 @@ public class CartService {
         }
 
         data.put("message", "Cart successfully saved");
-        if (cart.getCartId() != null) {
+
+        if (cart.getCartId() != null && res.isEmpty()) {
             data.put("message", "Cart successfully updated");
         }
 
