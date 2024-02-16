@@ -19,7 +19,7 @@ public class Cart {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CartProduct> products;
 
     public Cart() {
