@@ -5,10 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CartService {
@@ -88,10 +85,12 @@ public class CartService {
 
         Set<CartProduct> products = cart.getProducts();
         cartRepository.save(cart);
+
         for (CartProduct product : products) {
             product.setCart(cart);
             cartProductRepository.save(product);
         }
+
         data.put("data", cart);
         return new ResponseEntity<>(
                 data,
@@ -99,3 +98,5 @@ public class CartService {
         );
     }
 }
+
+
