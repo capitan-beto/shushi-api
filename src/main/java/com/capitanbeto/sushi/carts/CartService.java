@@ -67,9 +67,9 @@ public class CartService {
 
     public ResponseEntity<Object> newCart(Cart cart) {
         data = new HashMap<>();
-        Optional<Cart> res = cartRepository.findCartByUserId(cart.getUserId());
+        Optional<Cart> res = cartRepository.findById(cart.getUserId());
 
-        if (res.isPresent()) {
+        if (res.isPresent() && cart.getCartId() == null) {
             data.put("error", true);
             data.put("message", "that user or cart id is already in use");
             return new ResponseEntity<>(
