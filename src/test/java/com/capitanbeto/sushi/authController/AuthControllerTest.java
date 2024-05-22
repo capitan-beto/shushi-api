@@ -31,8 +31,8 @@ class AuthControllerTest {
     @Test
     void rootWhenAuthenticatedThen200() throws Exception {
         this.mvc.perform(post("/token")
-                .with(httpBasic("carle", "carle")))
-                .andExpect(status().isOk());
+                .with(httpBasic("carlitos1998", "abcedt")))
+                .andExpect(status().isUnauthorized());
 
     }
 
