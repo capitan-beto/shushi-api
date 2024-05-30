@@ -8,7 +8,7 @@ RUN mvn package
 
 FROM openjdk:19
 COPY --from=build app/target/*.jar app.jar
-COPY --from=build app/target/classes/certs .
+COPY --from=build app/target .
 WORKDIR /app
 CMD ["java", "-jar", "/app.jar"]
 
