@@ -1,14 +1,14 @@
 FROM maven:3.9.7 AS build
-WORKDIR /sushi
+WORKDIR /app
 COPY pom.xml .
-COPY src ./sushi
-RUN mvn clean package 
+COPY src ./src
+RUN mvn package
 
 
 
 FROM openjdk:19
-# WORKDIR /sushi
-COPY --from=build /sushi/target/sushi-0.0.1-SNAPSHOT.jar /app.jar
+COPY --from=build app/target/*.jar app.jar
+WORKDIR /app
 CMD ["java", "-jar", "/app.jar"]
 
 # COPY src ./src
