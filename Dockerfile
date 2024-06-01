@@ -2,13 +2,13 @@ FROM maven:3.9.7 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-COPY src/main/resources/certs/*.pem app/certs
 RUN mvn package
 
 
 
 FROM openjdk:19
 COPY --from=build app/target/*.jar app.jar
+COPY --from=build app/target/classes/certs/private.pem app/certs
 WORKDIR /app
 CMD ["java", "-jar", "/app.jar"]
 
