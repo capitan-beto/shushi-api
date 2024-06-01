@@ -1,16 +1,10 @@
-FROM maven:3.9.7 AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn package
+FROM openjdk:17-jdk-alpine
 
+COPY target/*.jar app.jar
 
+EXPOSE 8080
 
-FROM openjdk:19
-COPY --from=build app/target/*.jar app.jar
-COPY --from=build app/target/classes/certs/private.pem app/certs
-WORKDIR /app
-CMD ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
 
 ENV db_username sushiDB_leavewind
 ENV db_password 6f07a152c95c99a37368c622af3b1e5093ba8b72
