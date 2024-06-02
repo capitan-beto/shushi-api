@@ -1,10 +1,16 @@
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-focal
 
-COPY target/*.jar app.jar
+WORKDIR /app
 
-EXPOSE 8080
+COPY .mvn/ .mvn
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY mvnw pom.xml ./
+
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]
 
 ENV db_username sushiDB_leavewind
 ENV db_password 6f07a152c95c99a37368c622af3b1e5093ba8b72
